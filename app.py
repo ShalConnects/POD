@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import os
 from generate_image import generate_image
 
-app = Flask(__name__, static_folder="static", template_folder="Templates")
+app = Flask(__name__, static_folder="static", template_folder="templates")
 app.config['UPLOAD_FOLDER'] = 'static/generated_images'
 
 
