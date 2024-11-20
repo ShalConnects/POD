@@ -1,11 +1,5 @@
 flask
-diffusers
-transformers
-torch
-torchvision
 stability-sdk
 pillow
-grpcio
-grpcio-tools
+requests
 python-dotenv
-accelerate

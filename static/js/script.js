@@ -1,16 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     // Color Selection Code
     const colorOptions = document.querySelectorAll('.color-option');
     const tshirtImage = document.getElementById('tshirt');
-
-    colorOptions.forEach(option => {
-        option.addEventListener('click', () => {
-            const selectedColor = option.dataset.color;
-            tshirtImage.src = `/static/images/tshirt_${selectedColor}.png`;
-        });
-    });
-
     const regenerateBtn = document.getElementById("regenerate");
     const confirmBtn = document.getElementById("confirm");
     const downloadBtn = document.getElementById("download");
@@ -20,12 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const promptInput = document.getElementById("prompt");
     const placeholderText = document.getElementById("placeholder-text");
 
-    // Check if the Download button exists before manipulating it
+    // Initialize the UI
     if (downloadBtn) {
-        // Disable the Download button for now
-        downloadBtn.disabled = true;
-        downloadBtn.style.opacity = 0.5; // To give a visual cue that it's disabled
+        downloadBtn.disabled = true; // Disable download button initially
+        downloadBtn.style.opacity = 0.5; // Dim it to indicate it's disabled
     }
+
+    // Handle color selection for the T-shirt
+    colorOptions.forEach(option => {
+        option.addEventListener('click', () => {
+            const selectedColor = option.dataset.color;
+            tshirtImage.src = `/static/images/tshirt_${selectedColor}.png`;
+        });
+    });
 
     // Trigger the generate process when Enter key is pressed in the textarea
     promptInput.addEventListener("keydown", (event) => {
@@ -35,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Regenerate design process
+    // Handle Generate Design button click
     regenerateBtn.addEventListener("click", () => {
         const prompt = promptInput.value.trim();
         if (!prompt) {
@@ -43,10 +41,17 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Show spinner and hide design while generating
+        // Show spinner and reset the UI for a new design
         spinner.style.display = "block";
+        designContainer.style.backgroundImage = ""; // Clear previous design
         designContainer.style.display = "none";
-        placeholderText.style.display = "block"; // Show the placeholder text
+        placeholderText.style.display = "block"; // Show placeholder text
+
+        // Disable download button during generation
+        if (downloadBtn) {
+            downloadBtn.disabled = true;
+            downloadBtn.style.opacity = 0.5;
+        }
 
         fetch('/generate', {
             method: 'POST',
@@ -56,29 +61,39 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Hide the placeholder text and update the circular container's background image
-                    placeholderText.style.display = "none"; // Hide placeholder
+                    // Update the design container with the new image
+                    placeholderText.style.display = "none"; // Hide placeholder text
                     designContainer.style.backgroundImage = `url(${data.image_url}?t=${new Date().getTime()})`; // Prevent caching
-                    designContainer.style.display = "block"; // Show the design
-                    // Enable download button after the design is generated (if it exists)
+                    designContainer.style.display = "block"; // Show design container
+
+                    // Enable the download button
                     if (downloadBtn) {
                         downloadBtn.disabled = false;
-                        downloadBtn.style.opacity = 1; // Restore opacity to normal
+                        downloadBtn.style.opacity = 1;
                     }
                 } else {
                     alert(`Error: ${data.error}`);
                 }
             })
-            .catch(err => alert(`Fetch Error: ${err}`))
+            .catch(err => alert(`Error generating design: ${err}`))
             .finally(() => {
-                // Hide spinner after the image is loaded
-                spinner.style.display = "none";
+                spinner.style.display = "none"; // Hide spinner
             });
     });
 
-    // Confirm design process
+    // Handle Confirm Design button click
     confirmBtn.addEventListener("click", () => {
         const selectedSize = sizeSelector.value;
         alert(`Design confirmed! Size selected: ${selectedSize}`);
     });
+
+    // Handle Download Design button click
+    if (downloadBtn) {
+        downloadBtn.addEventListener("click", () => {
+            const link = document.createElement("a");
+            link.href = "/static/generated_images/output_image_1.png"; // Use the generated image path
+            link.download = `tshirt_design_${new Date().getTime()}.png`; // Add timestamp for uniqueness
+            link.click();
+        });
+    }
 });
