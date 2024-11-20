@@ -14,7 +14,7 @@ def generate_image_stability_api(prompt):
     stability_api = client.StabilityInference(
         key=STABILITY_API_KEY,
         verbose=True,  # Enables detailed logging for debugging
-        engine="stable-diffusion-v1"  # Ensure this matches the correct engine
+        engine="stable-diffusion-v1-4"  # Ensure this matches the correct engine
     )
 
     # Generate the image
