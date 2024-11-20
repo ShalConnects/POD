@@ -8,3 +8,4 @@ pillow
 grpcio
 grpcio-tools
 python-dotenv
+accelerate
