@@ -1,0 +1,249 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #2d2d2d;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    font-family: "Quicksand", serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Lexend Deca", serif;
+}
+
+.container {
+    width: 715px;
+    margin: 20px auto;
+    /* box-shadow: 0px 0px 10px #ddd; */
+    border-radius: 10px;
+    /* padding: 15px; */
+    display: flex;
+    background: #fff;
+}
+
+.tshirt-preview {
+    position: relative;
+    display: inline-block;
+    width: 450px !important;
+    border-right: 1px solid #f0f0f0;
+    padding: 15px;
+    max-width: 450px;
+    min-width: 450px;
+}
+/* .intro {
+    border-bottom: 1px solid #f0f0f0
+} */
+.quotation {
+    font-size: 50px;
+    margin: 0;
+    line-height: 0px;
+}
+
+
+.tshirt-prompt {
+    padding: 20px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+/* 
+.tshirt-prompt div {
+    margin: 20px 0;
+} */
+
+.tshirt-preview, .tshirt-prompt, .color-selector {
+    /* padding: 10px */
+    margin: 20px 0;
+}
+
+.tshirt-preview h1 {
+    background-color: #6a994e;
+    margin: 0;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    padding: 0 5px 5px;
+    color: #fff;
+}
+
+.prompt-input h2, .size-selector h2, .color-selector h2 {
+    /* background-color: #bc4749; */
+    /* color: #fff; */
+    margin: 0;
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #535353
+}
+
+.size-selector h2 {
+    /* margin-top: 20px; */
+}
+
+.size-selector select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 -2px 5px rgba(255, 255, 255, 0.1);
+    font-size: 16px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease-in-out;
+    text-align: center;
+  }
+  
+  .size-selector select:focus {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2), 0 -3px 8px rgba(255, 255, 255, 0.2);
+    outline: none;
+  }
+
+  /* Later use */
+  /* .color-option {
+    display: inline-block;
+    cursor: pointer;
+  }
+  
+  .color-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid #ddd;
+  } */
+
+
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* margin-top: 20px; */
+}
+
+.actions button, .actions_2 button {
+    padding: 8px 20px;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 -2px 5px rgba(255, 255, 255, 0.1);
+    font-size: 15px;
+    cursor: pointer;
+    color: #ffffff;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.actions button:hover {
+    box-shadow: 0 3px 8px #6a994e8a, 0 -3px 8px #fdfdfd;
+}
+
+#download {
+    background-color: #6a994e;
+}
+
+#regenerate {
+    background-color: #bc4749;
+    margin-top: 5px;
+}
+
+#confirm {
+    background-color: #a7c957;
+    margin-top: 10px;
+}
+
+.prompt-input textarea {
+    padding: 10px;
+    border: 0 solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1), 0 -2px 5px rgba(255, 255, 255, 0.1);
+    /* width: 100%; */
+    font-size: 16px;
+    transition: box-shadow 0.3s ease-in-out;
+        width: 180px; /* Adjust the width as needed */
+        height: 80px;
+        resize: none; /* Disable resizing */
+        text-align: center;
+  }
+  
+.prompt-input textarea:focus {
+    box-shadow: 0 3px 8px #6a994e8a, 0 -3px 8px #fdfdfd;
+    outline: none;
+  }
+
+#tshirt {
+    width: 370px;
+    height: 500px;
+}
+
+/* Circular Design Container */
+.design-container {
+    position: absolute;
+    top: 30%; /* Adjust positioning relative to the T-shirt */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-size: 110%;
+    background-position: center;
+    background-repeat: no-repeat;
+    mix-blend-mode: multiply;
+    opacity: 1.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #eee; /* Light gray background for placeholder */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Thin border for realism */
+}
+
+
+
+#placeholder-text {
+    display: block; /* Show placeholder text */
+    color: #535353;
+}
+
+
+#design {
+    position: absolute;
+    top: 30%; /* Adjust this value to position the design */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%; /* Adjust size of design */
+    height: auto;
+    mix-blend-mode: normal; /* Blending mode for realism */
+    opacity: 0.9; /* Slight transparency for better blending */
+    border-radius: 50%;
+}
+
+
+.spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 6px solid #f3f3f3; /* Light grey */
+    border-top: 6px solid #6a994e; /* Blue */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

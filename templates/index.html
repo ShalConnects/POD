@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Shirt Designer</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+
+        <!-- T-Shirt Preview -->
+        <div class="tshirt-preview">
+            <h1>Design Your T-Shirt</h1>
+            <img id="tshirt" src="/static/images/tshirt.png" alt="T-Shirt">
+            <div class="design-container" id="design-container">
+                <span id="placeholder-text">Design will appear here</span>
+            </div>
+            <!-- <img id="design" src="" alt="Design Preview" style="display: none;"> -->
+            <!-- Loading Spinner -->
+            <div id="spinner" class="spinner" style="display: none;"></div>
+        </div>
+
+        <div class="tshirt-prompt">
+            <div class="intro">
+                <p class="quotation">"</p>
+                <p>From thought to thread—create your custom T-shirt with the power of AI.</p>
+            </div>
+            <!-- Prompt Input -->
+            <div class="prompt-input">
+                <h2>Enter Your Idea</h2>
+                <!-- <input type="text" id="prompt" placeholder="E.g., A futuristic robot in neon lights"> -->
+                <textarea type="text" id="prompt" placeholder="E.g., A futuristic robot in neon lights/250 char allowed" autofocus maxlength="250" required></textarea>
+                <div class="actions re-g">
+                    <button id="regenerate">Generate</button>
+                </div>
+            </div>
+<!-- 
+            <div class="actions">
+                <button id="regenerate">Generate</button>
+            </div> -->
+
+            <!-- Size Selector -->
+            <div class="size-selector">
+                <h2>Choose Size</h2>
+                <select id="size" name="size">
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                    <option value="extra-large">Extra Large</option>
+                </select>
+
+                <div class="actions">
+                    <button id="confirm">Confirm</button>
+                </div>
+            </div>
+
+            <!-- Color Selector // Later -->
+            <!-- <div class="color-selector">
+                <h2>Choose Color</h2>
+                <div class="color-option" data-color="black" title="Black">
+                    <div class="color-circle" style="background-color: black;"></div>
+                </div>
+                <div class="color-option" data-color="white" title="White">
+                    <div class="color-circle" style="background-color: white;"></div>
+                </div>
+                <div class="color-option" data-color="red" title="Red">
+                    <div class="color-circle" style="background-color: red;"></div>
+                </div>
+            </div> -->
+
+            <!-- Buttons -->
+            
+            <!-- <div class="actions_2">
+                <button id="download">Download Design</button>
+            </div> -->
+
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
