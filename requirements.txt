@@ -1,8 +1,9 @@
 flask
 diffusers
-stability-sdk
+transformers
 torch
 torchvision
+stability-sdk
 pillow
 grpcio
 grpcio-tools
