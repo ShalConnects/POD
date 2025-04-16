@@ -1,3 +1,5 @@
+console.log("JS is working!");
+
 document.addEventListener("DOMContentLoaded", () => {
     const colorOptions = document.querySelectorAll('.color-option');
     const tshirtImage = document.getElementById('tshirt');
