@@ -61,25 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt, color: selectedColor }),
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                placeholderText.style.display = "none";
-                designContainer.style.backgroundImage = `url(${data.image_url}?t=${Date.now()})`;
-                designContainer.style.display = "block";
-
-                if (downloadBtn) {
-                    downloadBtn.disabled = false;
-                    downloadBtn.style.opacity = 1;
+            .then(response => response.json())
+            .then(data => {
+                console.log("Fetch response:", data); // 👈 ADD THIS
+                if (data.success) {
+                    placeholderText.style.display = "none";
+                    designContainer.style.backgroundImage = `url(${data.image_url}?t=${Date.now()})`;
+                    designContainer.style.display = "block";
+        
+                    if (downloadBtn) {
+                        downloadBtn.disabled = false;
+                        downloadBtn.style.opacity = 1;
+                    }
+                } else {
+                    alert(`Backend Error: ${data.error}`); // 👈 SHOW ERROR
                 }
-            } else {
-                alert(`Error: ${data.error}`);
-            }
-        })
-        .catch(err => alert(`Error generating design: ${err}`))
-        .finally(() => {
-            spinner.style.display = "none";
-        });
+            })
+            .catch(err => alert(`Request Failed: ${err}`))
+            .finally(() => {
+                spinner.style.display = "none";
+            });
     });
 
     // Confirm button
