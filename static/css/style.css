@@ -105,19 +105,24 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   /* Later use */
-  /* .color-option {
+.color-option {
     display: inline-block;
     cursor: pointer;
-  }
-  
-  .color-circle {
+    margin: 5px;
+}
+
+.color-circle {
     width: 20px;
     height: 20px;
     border-radius: 50%;
     display: inline-block;
     margin-right: 5px;
-    border: 1px solid #ddd;
-  } */
+    border: 2px solid #aaa;
+}
+
+.color-option.active .color-circle {
+    border: 3px solid #6a994e;
+}
 
 
   .actions {
