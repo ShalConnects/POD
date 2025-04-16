@@ -12,6 +12,33 @@ def index():
     generated_image_url = os.path.join(app.config['UPLOAD_FOLDER'], "output_image_1.png")
     return render_template("index.html", generated_image_url=generated_image_url)
 
+@app.route('/upload', methods=['POST'])
+def upload_design():
+    try:
+        file = request.files['image']
+        color = request.form.get("color", "white")
+
+        design_path = os.path.join(app.config['UPLOAD_FOLDER'], "uploaded_design.png")
+        file.save(design_path)
+
+        shirt_map = {
+            "white": "tshirt_white.png",
+            "black": "tshirt_black.png",
+            "blue": "tshirt_blue.png"
+        }
+        shirt_path = os.path.join(app.config['SHIRT_IMAGE_FOLDER'], shirt_map.get(color, "tshirt_white.png"))
+        preview_path = os.path.join(app.config['UPLOAD_FOLDER'], "output_image_1.png")
+
+        place_design_on_tshirt(
+            tshirt_image_path=shirt_path,
+            design_image_path=design_path,
+            output_path=preview_path
+        )
+
+        return jsonify({'success': True, 'image_url': '/' + preview_path})
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)})
+
 
 @app.route('/generate', methods=['POST'])
 def generate():
