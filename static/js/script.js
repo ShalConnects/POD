@@ -1,5 +1,3 @@
-console.log("JS is working!");
-
 document.addEventListener("DOMContentLoaded", () => {
     const colorOptions = document.querySelectorAll('.color-option');
     const tshirtImage = document.getElementById('tshirt');
@@ -13,6 +11,39 @@ document.addEventListener("DOMContentLoaded", () => {
     const placeholderText = document.getElementById("placeholder-text");
 
     let selectedColor = "white"; // Default T-shirt color
+
+    const uploadInput = document.getElementById("upload-design");
+
+uploadInput.addEventListener("change", async () => {
+    const file = uploadInput.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("color", selectedColor);
+
+    spinner.style.display = "block";
+    designContainer.style.backgroundImage = "";
+    placeholderText.style.display = "block";
+
+    const response = await fetch('/upload', {
+        method: "POST",
+        body: formData
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        designContainer.style.backgroundImage = `url(${data.image_url}?t=${Date.now()})`;
+        placeholderText.style.display = "none";
+        designContainer.style.display = "block";
+    } else {
+        alert("Upload failed: " + data.error);
+    }
+
+    spinner.style.display = "none";
+});
+
 
     // Initialize the UI
     if (downloadBtn) {
